@@ -7,20 +7,20 @@ import com.example.tiptime.databinding.ActivityMainBinding
 import java.text.NumberFormat
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding //Binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.calculateButton.setOnClickListener{ calculateTip() }
+        binding = ActivityMainBinding.inflate(layoutInflater)       //Binding
+        setContentView(binding.root)                                //Binding
+        binding.calculateButton.setOnClickListener{ calculateTip() }//Binding
     }
 
     private fun calculateTip() {
-        val stringInTextField = binding.costOfService.text.toString()
+        val stringInTextField = binding.costOfService.text.toString()//Binding
         val cost = stringInTextField.toDoubleOrNull()
         if (cost == null){
-            binding.tipResult.text=""
-            binding.totalAmount.text=""
+            binding.tipResult.text=""                                   //Binding
+            binding.totalAmount.text=""                                 //Binding
             return
         }
         Log.println(Log.ERROR,"cost",cost.toString())
@@ -30,11 +30,11 @@ class MainActivity : AppCompatActivity() {
             else -> 0.15
         }
         var tip = tipPercentage * cost
-        val roundUp = binding.roundUpSwitch.isChecked
+        val roundUp = binding.roundUpSwitch.isChecked                      //Binding
         if (roundUp) {
             tip = kotlin.math.ceil(tip)
         }
-        val formattedTip = NumberFormat.getCurrencyInstance().format(tip)
+        val formattedTip = NumberFormat.getCurrencyInstance().format(tip)       //NumberFormat to format normal numbers as currency
         binding.tipResult.text = getString(R.string.tip_amount, formattedTip)
 //        val totalAMT=binding.totalAmount
 //        totalAMT.text=(tip+cost).toString()
